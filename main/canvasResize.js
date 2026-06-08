@@ -2,8 +2,8 @@
 //It is triggered whenever the window is resized
 //I use it to resize the image so it can match the window size
 function windowResized(){
-    //Use built in p5.js windowWidth and windowHeight
-    //to resize the canvas to each new window width and window height
+  //Use built in p5.js windowWidth and windowHeight
+  //to resize the canvas to each new window width and window height
   resizeCanvas(windowWidth, windowHeight);
 
   //Recalculate the correct fit for the image to fit in the new window size properly
@@ -12,12 +12,14 @@ function windowResized(){
 }
 
 
+
 // This function calculates the size and position of the image so its fits the canvas correctly
 //without distortion, and is centred within the canvas 
 function calculateFit() {
-    //This variable holds the aspect ratio of the reference image which I use to draw the image
-    //segments from
-    //This is used to discern whether the image height or width is greater
+
+  //This variable holds the aspect ratio of the reference image which I use to draw the image
+  //segments from.
+  //This is used to discern whether the image height or width is greater
   let imgAspect = img.width / img.height;
 
   //This variable holds the canvas aspect ratio

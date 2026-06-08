@@ -14,6 +14,8 @@ class bgSegment {
     //The colour from the original image that corresponds with the segment's position
     this.bgsegColour = this.sampleColour();
 
+    this.group = "background";
+
   }
 
 
@@ -28,30 +30,36 @@ class bgSegment {
     //Calculate height of each segment in the reference image
     let sampleH = img.height / numSegments;
 
-    //Get x positiion of where to sample colour from
-    let x = this.col * sampleW + sampleW / 2;
-    //Get y position of where to sample from
-    let y = this.row * sampleH + sampleH / 2;
+    //X position of the pixel being sample for colour in the reference image
+    let x = floor(this.col * sampleW + sampleW / 2);
+    //Y position of the pixel being sampled for colour in the reference image
+    let y = floor(this.row * sampleH + sampleH / 2);
 
 
-    //Get the reference colour from the reference image
-    let refColour = img.get(x, y);
+    //Converts the x y position of the pixel into an index for the pixels array of img
+    //REFERENCE NOTE: The calculation for accessing pixel index was found from source: 
+    // https://idmnyu.github.io/p5.js-image/#index
+   let index = (x + y * img.width) * 4;
 
-    //Convert the reference colour to greyscale
-    //Add the RGB values of refColour together and divide them by 3 
+   //Store the red, green, and blue values from the pixel at this index
+    let r = img.pixels[index];
+    let g = img.pixels[index + 1];
+    let b = img.pixels[index + 2];
+
+    //Convert the rgb to greyscale
+    //Add the RGB values together and divide them by 3 
     //to get the average brightness; this is the greyscale intensity.
-    let grey = (refColour[0] + refColour[1] + refColour[2]) / 3;
+    let grey = (r + g + b) / 3;
     //R, G and B now use the same value so the colour is grey. 
     //An alpha value of 20 is used to make the colour somewhat transparent
     //this is so the background image is not overly noticeable.
-    return [grey, grey, grey, 10];   
+    return [grey, grey, grey, 90];   
   }
 
   
 
 
-    draw() {
-
+  draw() {
     // Calculate position and size at draw time, based on the current fit
     //Calculate how wide each segment is based on current fit
     let w = fit.w / numSegments;
@@ -63,11 +71,10 @@ class bgSegment {
     //Calculate the y position for this segment
     let y = fit.y + this.row * h;
 
-    //Set fill and stroke and draw the background segment rectangle.
+    //Set fill and set no stroke and draw the background segment rectangle.
     fill(this.bgsegColour);
-    stroke(this.bgsegColour);
+    noStroke();
     rect(x, y, w, h);
-
-}
+  }
 
 }

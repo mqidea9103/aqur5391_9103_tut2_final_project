@@ -7,12 +7,12 @@
 function sortSegmentIntoGroup(sortingSegment) {
   //Get the rgb mask colour for this segment
   let sortingSegmentColour = sortingSegment.srcMaskColour;
-  //Split the rgb colour into separate numbers
+  //Store the rgb colour into separate variables
   //for red, green and blue.
   //This is so they can be matched to the correct masking image colour.
-  let r = sortingSegmentColour[0];
-  let g = sortingSegmentColour[1];
-  let b = sortingSegmentColour[2];
+  let r = red(sortingSegmentColour);
+  let g = green(sortingSegmentColour);
+  let b = blue(sortingSegmentColour);
 
 
   //These comments show which colours mean which group
@@ -32,41 +32,56 @@ function sortSegmentIntoGroup(sortingSegment) {
   //put segment in hands array
   if (r == 204 && g == 0 && b == 255) {
     hands.push(sortingSegment);
+    sortingSegment.group = "hands";
   } 
   //If colour matches the body mask colour in masking image
   //put segment in body array
   else if (r == 255 && b == 0 && g == 0) {
     body.push(sortingSegment);
+    sortingSegment.group = "body";
+
   } 
   //If colour matches the water mask colour in masking image
   //put segment in water array
   else if (r == 0 && g == 102 && b == 204) {
     water.push(sortingSegment);
+    sortingSegment.group = "water";
+
   } 
   //If colour matches the bridges mask colour in masking image
   //put segment in bridges array
   else if (r == 0 && g == 255 && b == 0) {
     bridge.push(sortingSegment);
+    sortingSegment.group = "bridge";
+
   } 
   //If colour matches the sky mask colour in masking image
   //put segment in sky array
   else if (r == 255 && g == 255 && b == 0) {
     sky.push(sortingSegment);
+    sortingSegment.group = "sky";
+
   }
   //If colour matches the head mask colour in masking image
   //put segment in head array
   else if (r == 0 && g == 255 && b == 255) {
     head.push(sortingSegment);
+    sortingSegment.group = "head";
+
   }
   //If colour matches the eyes mask colour in masking image
   //put segment in eyes array
   else if (r == 0 && g == 51 && b == 255) {
     eyes.push(sortingSegment);
+    sortingSegment.group = "eyes";
+
   }
   //If colour matches the mouth mask colour in masking image
   //put segment in mouth array
   else if (r == 0 && g == 0 && b == 102) {
     mouth.push(sortingSegment);
+    sortingSegment.group = "mouth";
+
   
   }
   //If colour matches the figures mask colour in masking image
@@ -76,6 +91,8 @@ function sortSegmentIntoGroup(sortingSegment) {
     //Set 'isFigure' value to true for this segment
     //so it can be used for figure-specific animation purposes
     sortingSegment.isFigure = true;
+    sortingSegment.group = "figures";
+
   } 
 
 }
