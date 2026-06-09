@@ -13,7 +13,7 @@ function windowResized(){
 
 
 
-// This function calculates the size and position of the image so its fits the canvas correctly
+//This function calculates the size and position of the image so its fits the canvas correctly
 //without distortion, and is centred within the canvas 
 function calculateFit() {
 

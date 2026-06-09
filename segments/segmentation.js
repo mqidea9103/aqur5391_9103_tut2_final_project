@@ -1,7 +1,7 @@
 //This is a function that will sort each segment into the correct array of
 //segments that make up the section of the image it is from.
 //It matches the mask colour of each segment with the colour of 
-// the masking image at that position,
+//the masking image at that position,
 //and puts the segment into the corresponding group.
 
 function sortSegmentIntoGroup(sortingSegment) {
@@ -114,8 +114,8 @@ function setupSegments() {
 
       
       //Setup the background segments which will apepar in greyscale
-      // Create background segment
-      let bg = new bgSegment(row, col);
+      //Create background segment
+      let bg = new BGSegment(row, col);
       //Add to background segments array
       segmentsBG.push(bg);
     }

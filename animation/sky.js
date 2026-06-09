@@ -39,7 +39,7 @@ function drawPolygon(x, y, radius, starPoints) {
     beginShape();
 
 
-    //This loops from and angle of 0 to an angle of 360 (full circle which is TWO_PI)
+    //This loops from an angle of 0 to an angle of 360 (full circle which is TWO_PI)
     //it increments by the given angle value
     //This is so a vertex is created for each desired star point.
     for (let a = 0; a < TWO_PI; a += angle) {
@@ -125,7 +125,7 @@ function drawStars() {
 
 
         //Stars are only drawn on sky segments.
-        //The function should stop if the current segment is not a sky segment
+        //The for loop should stop if the current segment is not a sky segment
         if (seg.group !== "sky") {
             continue;
         }
@@ -136,7 +136,7 @@ function drawStars() {
 
 
         //Reverse the flicker direction (dimming/brightening) if the brightness
-        // value becomes too high or too low.
+        //value becomes too high or too low.
         //NOTE: AI USE ACKNOWLEDGEMENT: The below logic for reversing the flickering of the star was created with the use of AI: Microsoft Copilot.
         if (star.brightness > 255 || star.brightness < 150) {
             star.flicker *= -1;
@@ -150,7 +150,7 @@ function drawStars() {
 
 
         //For the star colour, use the brightness value for red and green
-        //Give blue a value 0f 255 so the stars have a blue tint.
+        //Give blue a value of 255 so the stars have a blue tint.
         //alpha is the already set alpha value for transparency
         fill(star.brightness, star.brightness, 255, alpha);
         noStroke();
@@ -159,8 +159,8 @@ function drawStars() {
         //REFERENCE NOTE: The use of sin() was studied from p5 references:
         //https://p5js.org/reference/p5/sin/
 
-        //Make the star size change over time using sine wave
-        //frameCount controls how fast the star changes size
+        //Make the star size change over time using sin
+        //frameCount * 0.2 controls how fast the star changes size
         //star brightness makes variation among the stars so they don't all look the same
         //*1.5 controls how much the size changes
         //2.5 is the starting size of the star
@@ -197,7 +197,7 @@ function updateSkyFlow() {
         //https://p5js.org/reference/p5/sin/
 
         //Make horizontal wave movement
-        //sin gives a number to create the back and forth movement
+        //sin is used to create movement
         //skyFlowTiming is used to make the movement change over time
         //seg.row is used to make each row move a little differently so the whole sky doesn't move
         //in one huge block.
@@ -208,16 +208,16 @@ function updateSkyFlow() {
         //https://p5js.org/reference/p5/cos/
 
         //Make vertical wave movement
-        //cos gives a number to create up and down movement
+        //cos is used to create movement
         //skyFlowTiming is used to make the movement change over time
         //seg.col is used to make each column move a little differently
         //*0.5 controls how much the segment moves vertically
         let targetY = cos(skyFlowTiming + seg.col * 0.1) * 0.5;
 
-        // Make the the segment's x offset move smoothly toward targetX at a speed of 20%
+        //Make the the segment's x offset move smoothly toward targetX at a speed of 0.20
         seg.offX = lerp(seg.offX, targetX, 0.2);
 
-         // Make the the segment's y offset move smoothly toward targetY at a speed of 20%
+         //Make the the segment's y offset move smoothly toward targetY at a speed of 0.20
         seg.offY = lerp(seg.offY, targetY, 0.2);
     }
 
@@ -237,10 +237,10 @@ function applySkyWiggle(seg, yPosition) {
   //https://p5js.org/reference/p5/sin/
 
   //If it is part of the sky segments,
-  //add a sin movement:
+  //add sin movement
   //frameCount increases every frame and is multiplied by 100 to make the movement change quickly over time
-  //multiplying segment column by 0.3 makes each column move a little differently
+  //adding segment column multiplied by 0.3 makes each column move a little differently
   //*2 controls how big the vertical movement is
-  //NOTE: AI USE: Microsoft Copilot was used to genereate the below calculation to produce the desired style of sky movement.
+  //NOTE: AI USE ACKNOWLEDGEMENT: The sin calculation/value below was created using AI assistance (Microsoft Copilot) to produce the desired style of sky movement.
   return yPosition + sin(frameCount * 100 + seg.col * 0.3) * 2;
 }

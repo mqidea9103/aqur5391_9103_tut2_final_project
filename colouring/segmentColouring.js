@@ -82,9 +82,9 @@ function applySegmentColoring(seg) {
     case "sky":
       let boost = lightningFlash * 90;
       stressedColour = color(
-        red(base) * 0.1 + boost,
-        green(base) * 0.2 + 10 + boost,
-        blue(base) * 0.1 + boost
+        red(base) * 0.1 + 10+ boost,
+        green(base) * 0.2 + boost,
+        blue(base) * 0.1 + 10 + boost
       );
       calmColour = color(
         red(base) * 0.01 + 5, 

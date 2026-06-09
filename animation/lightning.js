@@ -8,7 +8,7 @@ function updateLightning() {
 
   //If sky stress value  is lower than 0.6 there will be no lightning.
   if (skyStress < 0.6) {
-    //The lightningFlash value is reset to 0 an
+    //The lightningFlash value is reset to 0
     lightningFlash = 0;
     //Stop function here.
     return;

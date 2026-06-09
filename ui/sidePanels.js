@@ -151,7 +151,7 @@ function drawInstructionsPanel(x, y, uiScale) {
     textStyle(BOLD);
     text(
         "\n" +
-        "N: Sky\n" +
+        "N or n: Sky\n" +
         "Left Arrow: Water\n" +
         "Down Arrow: Bridge\n" +
         "Space Bar: Human Figures",

@@ -1,9 +1,8 @@
-//These are offsets which control how much the bridge moves
-//This value controls horizontal movement
+//This value will be used to control horizontal movement of the bridge
 let bridgeShakeX = 0;
-//This value controls vertical movement
-let bridgeShakeY = 0;
-//This value controls rotational movement
+
+//This value will be used to rotate the canvas
+//when drawing 'corrupted' bridge segments
 let bridgeShakeRotation = 0;
 
 
@@ -15,14 +14,10 @@ let bridgeShakeRotation = 0;
 //how much the bridge should move.
 //Higher stress value means more shaking. Lower stress value means less shaking.
 function updateBridgeShake() {
-
-  //Constrain the bridge stress value to stay between 0 and 1
-  //This prevents unintended animations if the stress level is too high or low
-  let constrainedStress = constrain(bridgeStress, 0, 1);
   
   //Make the shaking animation seem stronger by multiplying the stress value
   //This is to give the animation a more dramatic effect.
-  let amplifiedStress = constrainedStress * constrainedStress; 
+  let amplifiedStress = bridgeStress * bridgeStress; 
 
   //If the shaking is very small, stop movement so the bridge is still when stress is low.
   if (amplifiedStress < 0.01) {
@@ -32,10 +27,10 @@ function updateBridgeShake() {
     return;
   }
 
-  //These values are the maximum amount of bridge movement when stress is at highest value (1.0)
-  //Maximum horizontal movement
+  //Maximum amount of horizontal bridge movement when stress is at highest value (1.0)
   let maxX = 85;
-  //Maximum rotational movement in radians
+
+  //Maximum rotational value in radians
   let maxRotation = 0.12; 
 
   //REFERENCE NOTE: The use of sin() was studied from p5 references:
@@ -49,11 +44,12 @@ function updateBridgeShake() {
   //NOTE: AI USE ACKNOWLEDGEMENT: The calculation/value for the bridge shake variable below was created with AI assistance (Microsoft Copilot)
   bridgeShakeX = amplifiedStress * maxX * sin(frameCount * 1.2);
 
-  //This value will be used to make the bridge rotate left and right
+  //This value will be used to rotate the canvas to create
+  //variation in the corrupted bridge segments positions
   //MaxRotation controls how far the bridge can rotate
-  //The rotation is stronger when amplifiedStress value is higher
+  //The rotation is greater when amplifiedStress value is higher
   //NOTE: AI USE ACKNOWLEDGEMENT: The calculation/value for the bridge rotation variable below was created with AI assistance (Microsoft Copilot)
-  bridgeShakeRotation = amplifiedStress * maxRotation * sin(frameCount * 0.9);
+  bridgeShakeRotation = amplifiedStress * maxRotation * sin(frameCount * 50) * 5;
 }
 
 
@@ -116,9 +112,6 @@ function updateBridgeGlow() {
   //to ensure bridge stops shaking when bridge stress is low
   bridgeShakeX = 0;
 
-  //Set the vertical bridge movement value to 0
-  //to ensure bridge stops shaking when bridge stress is low
-  bridgeShakeY = 0;
 
   //REFERENCE NOTE: The use of sin() was studied from p5 references:
   //https://p5js.org/reference/p5/sin/
@@ -138,18 +131,20 @@ function updateBridgeGlow() {
 
 
 //This function adds shaking movement to the bridge segments
-function applyBridgeShake(seg, xPosition, yPosition) {
-    //If the segment is not part of the bridge, return the original x and y positions
+function applyBridgeShake(seg, xPosition) {
+    //If the segment is not part of the bridge, return the original x position
     if (seg.group !== "bridge") {
-        return { xPosition, yPosition };
+        return { xPosition };
     } 
 
-    //If the segment is part of the bridge segments add the value of the bridge shake offsets
+    //If the segment is part of the bridge segments add the value of the bridge shake offset
     xPosition += bridgeShakeX;
-    yPosition += bridgeShakeY;
 
-    //Return the new values of xPosition and yPosition
-    return { xPosition, yPosition };
+    //Set the normalBridge property to true for the segment (seg)
+    //so its width can be expanded when it is drawn.
+    seg.normalBridge = true;
+    //Return the new value of xPosition
+    return { xPosition };
 }
 
 
@@ -157,10 +152,10 @@ function applyBridgeShake(seg, xPosition, yPosition) {
 
 
 //This function draws a corrupted bridge segment
-//It does this by replacing the nomral rectangle with a stretched black shape
+//It does this by replacing the normal rectangle with a stretched black shape
 function drawCorruptedBridge(seg, x, y, w, h) {
 
-    //If the segment has not been flagged as 'corrupted
+    //If the segment has not been flagged as black
     //then return false so the normal drawing of the segment continues
     if (!seg.isBlack) {
       return false;

@@ -1,3 +1,5 @@
+//This function is called in sketch.js draw() to take appropriate action 
+//based on the current state of the program
 function checkProgramState(){
     //If the user has just started and the instructions need to be shown...
     if (showInstructions) {

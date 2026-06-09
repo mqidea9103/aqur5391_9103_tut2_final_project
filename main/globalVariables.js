@@ -1,10 +1,7 @@
 //Reference image
 let img;
 //Masking image used to organise the recreated image into separate sections to animate
-let maskedimg;
-
-//Stress level of the screaming figure that decides which animations occur
-//let stress = 0.3;
+let maskedImg;
 
 //Stress levels for controlliing the animations of each separate section of the image
 let skyStress = 1;
@@ -71,14 +68,14 @@ let bodyBreath = 1;
 let waterSparkles = [];
 
 //The maximum number of water sparkles allowed to be drawn
-let maxWaterSparkles = 150; // adjust for density
+let maxWaterSparkles = 150; 
 
-//Panel that will hold emotional balance meters
+//Panel that will hold emotional balance progress bars
 //to provide user with feedback
 //as well as the instructions
 let stressPanel;
 
-//The visual emotional balance meters
+//The visual emotional balance progress bars
 let skyBar;
 let waterBar;
 let bridgeBar;

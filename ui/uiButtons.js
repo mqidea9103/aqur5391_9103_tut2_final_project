@@ -1,4 +1,4 @@
-//These button position/size variables are made global
+//These button position and button size variables are made global
 //so that they can be used in mousePressed function
 let resetBtnX;
 let resetBtnY;
@@ -11,7 +11,7 @@ let hintBtnW;
 let hintBtnH;
 
 
-//This functions draws the 'reset' and 'hint' buttons
+//This function draws the 'reset' and 'hint' buttons
 //It is called in sketch.js draw()
 function drawUIButtons() {
 
@@ -20,7 +20,7 @@ function drawUIButtons() {
     
     //Value to scale the buttons when window resized
     let uiScale = min(width / 800, height / 600);
-    uiScale = min(uiScale, 1); // never scale above 1
+    uiScale = min(uiScale, 1); 
 
     //Button size after scaling
     let btnW = 160 * uiScale;
@@ -28,10 +28,10 @@ function drawUIButtons() {
 
     //Put buttons on left panel beside artwork
     let btnX = 20; 
-    //Align near top of artwork
-    let btnY1 = fit.y +  10;
+    //Place so buttons can still be visible when 'win' banner appears
+    let btnY1 = fit.y +  70;
     //Hint button is below reset button
-    let btnY2 = fit.y + btnH + 20; 
+    let btnY2 = fit.y + btnH + 80; 
 
     
     //Constrain x y values so button never goes off-screen
@@ -52,7 +52,7 @@ function drawUIButtons() {
     fill(40);
     rect(btnX, btnY2, btnW, btnH, 8);
     fill(255);
-    text("Help😭", btnX + btnW / 2, btnY2 + btnH / 2);
+    text("Help😱", btnX + btnW / 2, btnY2 + btnH / 2);
 
     //Button positions and sizes to be used for mousePressed function
     resetBtnX = btnX;

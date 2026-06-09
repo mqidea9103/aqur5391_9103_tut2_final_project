@@ -1,11 +1,11 @@
 //This is the class for each single segment rectangle of the background image
 //Each segment has a row and column in the grid
 //Each segment has a colour from the reference image
-class bgSegment {
+class BGSegment {
 
-   constructor(row, col) {
-    
-     //The column number for this segment
+  constructor(row, col) {
+
+    //The column number for this segment
     this.col = col;
 
     //The row number for this segment
@@ -14,23 +14,24 @@ class bgSegment {
     //The colour from the original image that corresponds with the segment's position
     this.bgsegColour = this.sampleColour();
 
+    //This holds which group (section of the artwork) the segment is in
     this.group = "background";
 
   }
 
 
-   //This is a function that picks the colour from the middle of the segment's 
-  // corresponding position in the reference image
-  //It then turns it into a grayscale so the background can be unobtrusive black and white.
+  //This is a function that picks the colour from the middle of the segment's 
+  //corresponding position in the reference image
+  //It then turns it into a greyscale colour so the background can be unobtrusive black and white.
   sampleColour() {
-    
+
     //Calculate width of each segment in the reference image
     let sampleW = img.width / numSegments;
 
     //Calculate height of each segment in the reference image
     let sampleH = img.height / numSegments;
 
-    //X position of the pixel being sample for colour in the reference image
+    //X position of the pixel being sampled for colour in the reference image
     let x = floor(this.col * sampleW + sampleW / 2);
     //Y position of the pixel being sampled for colour in the reference image
     let y = floor(this.row * sampleH + sampleH / 2);
@@ -39,9 +40,9 @@ class bgSegment {
     //Converts the x y position of the pixel into an index for the pixels array of img
     //REFERENCE NOTE: The calculation for accessing pixel index was found from source: 
     // https://idmnyu.github.io/p5.js-image/#index
-   let index = (x + y * img.width) * 4;
+    let index = (x + y * img.width) * 4;
 
-   //Store the red, green, and blue values from the pixel at this index
+    //Store the red, green, and blue values from the pixel at this index
     let r = img.pixels[index];
     let g = img.pixels[index + 1];
     let b = img.pixels[index + 2];

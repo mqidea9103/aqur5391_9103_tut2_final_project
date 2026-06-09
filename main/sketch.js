@@ -3,7 +3,7 @@ function preload() {
   //Load reference image that the program will redraw and animate
   img = loadImage('assets/Edvard_Munch_The_Scream.jpeg');
   //Load masking image to use for sorting image segments into separate image sections
-  maskedimg = loadImage('assets/thescreammask.png');
+  maskedImg = loadImage('assets/thescreammask.png');
 }
 
 
@@ -18,7 +18,7 @@ function setup() {
   //REFERENCE NOTE: I learned about how to use pixels using P5 references:
   //https://p5js.org/reference/p5/pixels/
   img.loadPixels();
-  maskedimg.loadPixels();
+  maskedImg.loadPixels();
 
 
   //Calculate the fit for when the window and canvas are resized
@@ -27,7 +27,7 @@ function setup() {
   //Setup the stars that appear when the stress level is lower
   setupStars();
 
-  // Create all image segment objects (foreground + background)
+  //Create all image segment objects (foreground + background)
   setupSegments();
 
   //Set up the sparkles that appear on the water when the stress level is lower
@@ -93,8 +93,12 @@ function draw() {
     updateBridgeCorruption();
   }
 
-  //Update the sky movement animation
-  updateSkyFlow();
+  //If the sky stess level is greater than 0.5...
+  if(skyStress > 0.5) {
+    //Update the sky movement animation
+    updateSkyFlow();
+  }
+  
 
   //Update the lightning flash animation
   updateLightning();

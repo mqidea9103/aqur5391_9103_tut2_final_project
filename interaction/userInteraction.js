@@ -50,7 +50,7 @@ function keyReleased() {
 
 
 //Use built in mousePressed function to handle
-//what happens when
+//what happens...
 function mousePressed() {
 
     //If the mouse was pressed while the

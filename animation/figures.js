@@ -25,10 +25,10 @@ function updateFiguresApproach() {
   //the value of targetY at a speed of 0.11
   figuresOffsetY = lerp(figuresOffsetY, targetY, 0.11);
 
-  //Make the scale of the figures increase smoothly toward 2
+  //Make the scale of the figures increase smoothly toward 4.5
   //at a speed of 0.11
   //This makes the figures appear to grow/move closer
-  figuresScale = lerp(figuresScale, 2, 0.11);
+  figuresScale = lerp(figuresScale, 4.5, 0.11);
 
 }
 
@@ -66,9 +66,5 @@ function updateFiguresCalm() {
   //sin is used to create the value movement
   //framecount updates the value every frame
   figureBobOffset = sin(frameCount * bobSpeed) * bobAmount;
-
   
-  // Soft colour shift
-  let calmTint = color(200, 180, 255);
-  figureCalmTint = lerpColor(color(255), calmTint, calm * 0.3);
 }

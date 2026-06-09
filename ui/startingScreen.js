@@ -123,7 +123,7 @@ function drawInstructionsPopup() {
     //Draw the user controls text
     textStyle(BOLD);
     text(
-        "N : Sky\n" +
+        "N or n: Sky\n" +
         "Left Arrow : Water\n" +
         "Down Arrow : Bridge\n" +
         "Space Bar : Human Figures",

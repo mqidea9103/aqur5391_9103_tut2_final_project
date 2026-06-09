@@ -30,8 +30,12 @@ class ImageSegment {
     //This holds whether the segment is part of the figure section of the image
     this.isFigure = false;
 
+    //This holds which group (section of the artwork) the segment is in
     this.group = "none";
 
+    //For bridge segments, this holds whether or not 
+    //the segment is a non-corrupted bridge segment
+    this.normalBridge = false;
   }
 
 
@@ -69,6 +73,7 @@ class ImageSegment {
     //The default scale value is 1 which means normal size
     let currentScale = 1;
 
+    //Colour segment will be filled with
     let fillColour;
 
 
@@ -82,10 +87,16 @@ class ImageSegment {
 
     // Apply bridge shake to this segment if it is a bridge segment
     if (this.group === "bridge") {
-      let shaken = applyBridgeShake(this, x, y);
-      //Give the x and y position of this segment the updated shaken values
+      let shaken = applyBridgeShake(this, x);
+      //If bridge stress is high and if this segment is
+      //a normal bridge segment (i.e. not a 'corrupted' one) then
+      //expand the width of this segment so that the 
+      //unsightly pixel outlines of the figures are somewhat reduced.
+      if (this.normalBridge == true && bridgeStress > 0.5) {
+        w = w * 20;
+      }
+      //Give the x position of this segment the updated shaken value
       x = shaken.xPosition;
-      y = shaken.yPosition;
     }
     
     //If this is a 'corrupted' bridge segment, draw the corrupted segment
@@ -96,6 +107,7 @@ class ImageSegment {
 
 
     //If this segment is part of the figure section of the image...
+    //if figure stress is high...
     if (this.group === "figures" && figureStress > 0.5 ) {
       //Then shift it by its x offset value
       x += figuresOffsetX;
@@ -103,7 +115,10 @@ class ImageSegment {
       y += figuresOffsetY;
       //And scale it by its scale value
       currentScale = figuresScale;
+      //if figure stress is low..
     } else if (this.group === "figures" && figureStress < 0.5 ) {
+      //add figure bobbing offset to vertical position (y) for 
+      //gentle figure bobbing animation
        y += figureBobOffset;
     }
 
@@ -136,7 +151,7 @@ class ImageSegment {
   
                                       ////// DRAW THE SEGMENT\\\\\\\
 
-    //Make the fill colour of the segment rectangle the colour stored in tintColour
+    //Make the fill colour of the segment rectangle the colour stored in fillColour
     fill(fillColour);
     noStroke();
 

@@ -1,5 +1,7 @@
+//This function is called from sketch.js draw() to draw the image segments 
+//of the artwork to the canvas
 function drawSegments(){
-     //Draw the background segments to the canvas.
+    //Draw the background segments to the canvas.
     //This serves as a greyscale background to make the image more cohesive when animations occur.
     for (const segment of segmentsBG) {
         segment.draw();

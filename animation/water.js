@@ -17,7 +17,7 @@ function updateWaterRipples() {
 
 
 //This function calculates the movement for each water segment
-//By using noise, sine waves and stress value, a swirling motion is created.
+//By using perlin noise, sin, and water stress value, a swirling motion is created.
 function applySegmentChaos(seg, timing) {
 
   //Holds the 'chaotic' level of the water movements.
@@ -35,6 +35,7 @@ function applySegmentChaos(seg, timing) {
   //Holds value of segment column converted into a noise coordinate
   //This is to give each segment a noise value
   let noiseX = seg.col * scale;
+
   //Holds value of segment row converted into a noise coordinate
   //This is to give each segment a noise value
   let noiseY = seg.row * scale;
@@ -44,7 +45,7 @@ function applySegmentChaos(seg, timing) {
   //that number is converted into an angle in radians 
   //by multiplying it by TWO_PI (1 full circle/360 degrees)
   //and multipying that by 4 makes it 0-4 full circles
-  //This means there are many possible angles, thus creating a swirling movement.
+  //This means there are many possible angles, thus creating a swirling movement
   //NOTE: AI USE ACKNOWLEDGEMENT: The calculation/value for the angle variable below was created with AI assistance (Microsoft Copilot)
   let angle = noise(noiseX, noiseY, timing * 0.55) * TWO_PI * 4;
 
@@ -55,10 +56,10 @@ function applySegmentChaos(seg, timing) {
   //https://p5js.org/reference/p5/sin/
 
 
-  //Horizontal swirling movement based on angle value multiplied by chaos value
+  //Horizontal swirling movement based on angle value, multiplied by chaos value
   //cos() creates the circular movement
   let swirlX = cos(angle) * chaos;
-  //Vertical swirling movement based on angle value multiplied by chaos value
+  //Vertical swirling movement based on angle value, multiplied by chaos value
   //sin() creates the circular movement
   let swirlY = sin(angle) * chaos;
 
@@ -80,10 +81,10 @@ function applySegmentChaos(seg, timing) {
   let targetY = swirlY + waveY;
 
 
-  // Move the segment offset toward the target using linear interpolation.
-  // Move toward targetX each frame at a speed of 0.72
+  //Move the segment offset toward the target using linear interpolation
+  //Move toward targetX each frame at a speed of 0.72
   seg.offX = lerp(seg.offX, targetX, 0.72);
-  // Move toward targetY each frame at a speed of 0.72
+  //Move toward targetY each frame at a speed of 0.72
   seg.offY = lerp(seg.offY, targetY, 0.72);
 
 }
@@ -145,11 +146,11 @@ function makeWaterSparkle() {
 
 
 
-//This function is called in sketch.js draw() to update the amount of water sparkles.
-//It depends onf the water stress value.
+//This function is called in sketch.js draw() to update the amount of water sparkles
+//It depends on the water stress value
 function updateWaterSparkles() {
 
-  //If the water stress value is high: over 0.5 then
+  //If the water stress value is high: over or equal to 0.5 then,
   //there should be no sparkles
   if (waterStress >= 0.5){
     //stop function here
