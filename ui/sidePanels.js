@@ -200,8 +200,8 @@ function drawHintPanel() {
 
 
     //Place the panel underneath the hint and reset buttons
-    let panelX = 20;
-    let panelY = 110; 
+    let panelX = hintBtnX;
+    let panelY = hintBtnY + 100; 
 
     //Save the current drawing state
     push();
@@ -228,7 +228,7 @@ function drawHintPanel() {
         "• Press all 4 keys at the same time\n" +
         "• Press quickly and repeatedly\n",
         10,
-        35
+        30
     );
 
     //Restore previous saved drawing state
