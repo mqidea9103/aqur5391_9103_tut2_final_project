@@ -19,7 +19,7 @@ let figureTargetStress = 1;
 let stressEaseSpeed = 0.02;
 
 //The number of image segments the recreated image is divided into
-let numSegments = 200;
+let numSegments = 180;
 
 //The image segments used to recreate the image
 let segments = [];
