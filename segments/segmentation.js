@@ -16,7 +16,6 @@ function sortSegmentIntoGroup(sortingSegment) {
 
 
   //These comments show which colours mean which group
-  //This is so I do not forget the menaing.
   // hands = purple (204, 0, 255)
   // body = red (255, 0, 0)
   // water = blue (0, 102, 204)

@@ -136,7 +136,7 @@ class ImageSegment {
     fillColour = applySegmentColoring(this);
 
   
-    // Add calm bridge glow to bridge segments when stress is low
+    //Add calm bridge glow to bridge segments when stress is low
     if (this.group === "bridge" && bridgeStress < 0.5) {
 
       //Use a soft blue colour for glow
@@ -177,7 +177,7 @@ class ImageSegment {
 
     } 
     else {//if this is not a scaled figure or body segment...
-      //Then just  go straight to drawing the rectangle without transformations for normal segments.
+      //Then just go straight to drawing the rectangle without transformations for normal segments.
       //Add to width and height to cover pixel noise.
       rect(x, y, w + 12, h + 5);
     }

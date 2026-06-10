@@ -91,16 +91,16 @@ function drawBar(label, value, x, y) {
 
     //The colour of the progress bar will change
     //based on the current stress value
-    let stressColour;
+    let progressColour;
     //Red for high stress
-    if (value > 0.7) stressColour = color(255, 80, 80);
+    if (value > 0.7) progressColour = color(255, 80, 80);
     //Orange for medium stress
-    else if (value > 0.4) stressColour = color(255, 180, 80);
+    else if (value > 0.4) progressColour = color(255, 180, 80);
     //Green for low stress
-    else stressColour = color(100, 255, 150);
+    else progressColour = color(100, 255, 150);
 
     //Draw the progress colour part of the bar
-    fill(stressColour);
+    fill(progressColour);
     rect(x + 60, y + 3, mapped, barH);
 }
 

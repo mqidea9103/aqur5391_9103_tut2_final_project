@@ -36,7 +36,7 @@ function updateBridgeShake() {
   //REFERENCE NOTE: The use of sin() was studied from p5 references:
   //https://p5js.org/reference/p5/sin/
 
-  // This value will be used to move the bridge horizontally in a smooth wave motion
+  //This value will be used to move the bridge horizontally in a smooth wave motion
   //sin creates the motion
   //frameCount increases every frame so the movement changes over time 
   //amplifiedStress controls the movement strength based on stress value
