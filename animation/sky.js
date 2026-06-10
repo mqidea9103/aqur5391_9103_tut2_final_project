@@ -20,9 +20,9 @@ let numStars = 80;
 //starPoints is number of points the shape should have
 function drawPolygon(x, y, radius, starPoints) {
 
-    //REFERENCE NOTE: The below for method for vertex creation for polygons
-    // was learned from p5 examples:
-    // https://p5js.jp/examples/form-regular-polygon
+    //REFERENCE NOTE: The below method for vertex creation for polygons
+    //was learned from p5 examples:
+    //https://p5js.jp/examples/form-regular-polygon
 
     //This variable holds the angle between each star point.
     //Dividing TWO PI (360 degrees) by the number of star points

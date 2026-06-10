@@ -56,11 +56,9 @@ function applySegmentChaos(seg, timing) {
   //https://p5js.org/reference/p5/sin/
 
 
-  //Horizontal swirling movement based on angle value, multiplied by chaos value
-  //cos() creates the circular movement
+  //Use cos() to create horizontal swirling movement based on angle value, multiplied by chaos value
   let swirlX = cos(angle) * chaos;
-  //Vertical swirling movement based on angle value, multiplied by chaos value
-  //sin() creates the circular movement
+  //Use sin() to create vertical swirling movement based on angle value, multiplied by chaos value
   let swirlY = sin(angle) * chaos;
 
   
